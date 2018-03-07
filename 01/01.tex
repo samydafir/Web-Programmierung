@@ -1,0 +1,72 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+
+\title{Übungsblatt 01}
+\author{Thomas Samy Dafir, Lex Winandy}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+\section{Aufgabe 3}
+\begin{itemize}
+	\item Benötigt Apache Modul: userdir
+	\item Aktivieren: sudo a2enmod userdir
+	\item Root directory festlegen: UserDir public\_html.
+	\item Directory ~/public\_html anlegen
+	\item Testen: buntmeise.cosy.sbg.ac.at/~username
+\end{itemize}
+
+\section{Aufgabe 6}
+\begin{itemize}
+	\item SSH Keypair auf lokalem computer erstellen:\\
+	ssh-keygen -t rsa
+	\item Speicherort wählen:\\
+	Enter file in which to save the key (/home/.ssh/id\_rsa):
+	\item Passphrase (optional):\\
+	Enter passphrase (empty for no passphrase):
+	\item Public Key auf Server transferieren:
+	ssh-copy-id user@server ODER \\
+	copy-paste.
+	\item OPTIONAL: Login nur mit SSH key:\\
+	sudo nano /etc/ssh/sshd\_config\\
+	PermitRootLogin without-password\\
+	sudo systemctl reload sshd.service
+\end{itemize}
+
+\section{Aufgabe 7}
+Wichtig zu berücksichtgen:
+\begin{itemize}
+	\item $\langle$!DOCTYPE html$\rangle$
+	\item $\langle$meta charset=''utf-8''$\rangle$
+\end{itemize}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
