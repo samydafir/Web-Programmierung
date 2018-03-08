@@ -32,6 +32,18 @@
 	\item Am Besten zufällig aus großen Character-Set generiert 
 \end{itemize}
 
+\section*{Aufgabe 5}
+Prinzipiell können als Character-encoding alle von der IANA definierten
+Charsets verwendet werden.(ASCII bis UTF-8)\\
+https://www.iana.org/assignments/character-sets/character-sets.xhtml\\
+Das zu verwendende Charset kann im HTML head angegeben werden:\\
+$\langle$meta charset=''utf-8''$\rangle$\\
+Diese einstellung kann jedoch von Apache überschrieben werden:\\
+\textit{AddDefaultCharset}\\
+Werte: Off (verwendet charset aus meta tag, abhängig von Bowser), 
+On (iso-8859-1), anderes IANA Charset
+
+
 
 \section*{Aufgabe 6}
 \begin{itemize}
