@@ -16,7 +16,22 @@
 \begin{document}
 \maketitle
 
+\section*{Aufgabe 1}
+\textbf{\textit{Gruppe: Richten Sie Benutzer-Accounts für alle Gruppenmitglieder auf ihrem server ein. Überlegen Sie wer alles sudo Rechte bekommen soll (alle?, einer?).}}
+
+Zum hinzufügen von Benutzer-Accounts benutzt man den Befehl "sudo adduser \textit{username}". Um ihm dann noch sudo Rechte zu geben muss man ihn zur Sudo Gruppe hinzufügen: "sudo adduser \textit{username} sudo"
+\section*{Aufgabe 2}
+\textbf{\textit{Gruppe: Installieren Sie den Webserver Apache auf Ihrem server. Erstellen Sie eine passende Startseite in HTML (/var/www/.../ index.html). Diese soll zumindest den Rechnernamen, ein Bild ihres Vogels, und Links auf die Homepages der Gruppenmitglieder enthalten.}}
+\begin{itemize}
+	\item "sudo apt-get install apache2" $\Rightarrow$ Apache installiert
+	\item $<$a href="\textit{url}"$>$ $\Rightarrow$ Link eingefügt
+	\item $<$img src="buntmeise.JPG" alt="buntmeise"$>$ $\Rightarrow$ Bild eingefügt
+\end{itemize}
+
 \section*{Aufgabe 3}
+\textbf{\textit{Gruppe: Konfigurieren Sie Apache so, dass jeder Benutzer auf ihrem server eine Homepage einrichten kann. Diese soll erreichbar sein unter http://vogel.cosy.sbg.ac.at/~benutzer/.
+Hinweis: ’apache per user web directories ubuntu’}}
+
 \begin{itemize}
 	\item Benötigt Apache Modul: userdir
 	\item Aktivieren: sudo a2enmod userdir
@@ -26,13 +41,19 @@
 \end{itemize}
 
 \section*{Aufgabe 4}
+\textbf{\textit{Erklären Sie Anforderungen an ein sicheres Passwort. Wie haben Sie ihr Passwort gewählt?
+(ohne dabei Ihr Passwort zu verraten :) Hinweis: ’xkcd’ und ’password’}}
+
 \begin{itemize}
 	\item Länge (mindesens 8 Zeichen, Brute Force)
 	\item Keine Wörter (Dictionary Attacks)
-	\item Am Besten zufällig aus großen Character-Set generiert 
+	\item Am Besten zufällig aus großen Character-Set generiert
 \end{itemize}
 
 \section*{Aufgabe 5}
+\textbf{\textit{Erstellen Sie eine HTML-Seite die Umlaute (Äüöß) und Zeichen wie $\&, <, >$ enthält. Welche character encodings gibt es? Wie kann das character encoding angegeben werden?
+Welche Möglichkeit bietet Apache in bezug auf character encoding? Wo haben Sie diese Information gefunden?}}
+
 Prinzipiell können als Character-encoding alle von der IANA definierten
 Charsets verwendet werden.(ASCII bis UTF-8)\\
 https://www.iana.org/assignments/character-sets/character-sets.xhtml\\
@@ -40,12 +61,16 @@ Das zu verwendende Charset kann im HTML head angegeben werden:\\
 $\langle$meta charset=''utf-8''$\rangle$\\
 Diese einstellung kann jedoch von Apache überschrieben werden:\\
 \textit{AddDefaultCharset}\\
-Werte: Off (verwendet charset aus meta tag, abhängig von Bowser), 
+Werte: Off (verwendet charset aus meta tag, abhängig von Bowser),
 On (iso-8859-1), anderes IANA Charset
 
 
 
 \section*{Aufgabe 6}
+\textbf{\textit{Erklären und demonstrieren Sie die Schritte die notwendig sind, damit Sie sich ohne
+Passworteingabe auf ihrem server einloggen können (Stichwort: SSH public key authen-
+tication).}}
+
 \begin{itemize}
 	\item SSH Keypair auf lokalem computer erstellen:\\
 	ssh-keygen -t rsa
@@ -63,30 +88,24 @@ On (iso-8859-1), anderes IANA Charset
 \end{itemize}
 
 \section*{Aufgabe 7}{\tiny }
+\textbf{\textit{Überprüfen Sie mittels des W3C validators (http://validator.w3.org), ob die Start-
+seite Ihres servers gültiges HTML5 ist. Welche Änderungen haben Sie durchgeführt?}}
+
 Wichtig zu berücksichtgen:
 \begin{itemize}
 	\item $\langle$!DOCTYPE html$\rangle$
 	\item $\langle$meta charset=''utf-8''$\rangle$
 \end{itemize}
+
+\section*{Aufgabe 8}
+\textbf{\textit{Wo befinden sich die log files des Webservers? Welche Informationen finden sich im log file? Was ist das common log format und wie ist es aufgebaut?}}
+
+Im log file stehenn Informationen zu den Zugriffen auf den Webserver drinnen. Was passierte wann bei wem?
+\begin{itemize}
+	\item common log format:
+	Standartisierter Aufbau von log files. Damit können auch Programme die files lesen und analysieren.
+	
+	host ident authuser date request status bytes
+\end{itemize}
+
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
