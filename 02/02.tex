@@ -23,12 +23,52 @@ Erstellen Sie ein separates DocumentRoot für diesen VirtualHost.}}
 
 \section*{Aufgabe 2}
 \textbf{\textit{Erstellen Sie eine passwortgeschützte URL. Verwenden Sie digest authentication. Was ist
-der Unterschied zu plain. Hinweis: .htaccess, mod auth digest.}}
+der Unterschied zu plain. Hinweis: .htaccess, mod auth digest.}}\\
+
+Funktion: Der Client sendet eine Anfrage an den Server. Dieser antwortet mit ''not authorized'' und sendet einen einmal
+gültigen Zufallswert mit. Der Client wird zur Passworteingabe aufgefordert. Der User authentufuziert sich.
+Der Client sendet einen neuen Request, jetzt aber mit einem zusätzlichen Header: WWW\_Authenticate. Enthält
+User, realm, qop, den Zufallswert und das gehashte Passwort: MD5 :(. Der Server vergleicht mit den Daten im Passwortfile
+und sendet entwerde 200 OK oder wiederum 401 not authorized.
+Unterschied zu basic: password wird gehashed übertragen.
+\\Benötigte Module: mod\_auth\_digest + mod\_authn\_file, für User/Password file.\\
+Verwendung:
+\begin{enumerate}
+	\item Optionen für Modul spezifizieren (2 Möglichkeiten):
+	\begin{itemize}
+		\item Über Directory Eintrag in der Apache config
+		\item Über eine .htaccess Datei im zu schützenden Verzeichnis
+	\end{itemize}
+	\item Datei mit ''user:realm:password\_hash'' erstellen:\\
+	htdigest [ -c ] passwdfile realm username\\
+	Der Pfad zu ''passwdfile'' muss dann im .htaccess file angegeben werden
+\end{enumerate}
+Settings:
+\begin{itemize}
+	\item AuthType: Authentcation Type (digest/basic)
+	\item AuthName: Realm name. Muss mit realm im password-file übereinstimmen. 
+	\item AuthDigestAlgorithm: Hash Algorithmus (MD5)
+	\item AuthDigestNonceLifetime: Zeitraum für den der aktuelle Zufallswert gültig ist (in s)
+	\item AuthDigestDomain: Domains für die diese Authentifizierung gültig ist
+	\item AuthDigestQop: Quality of Protection. Nur username/passwort oder + integrity check
+	\item AuthUserFile: Pfad zum password file
+	\item Require: Gibt Voraussetzungen für Zutritt an: all granted, alldenied, valid-user(mit pwd file), user, group.
+\end{itemize}	
+
 
 \section*{Aufgabe 3}
 \textbf{\textit{Machen Sie sich mit dem Firefox Web Developer vertraut, insb. mit der ’Network’ An-
 sicht. Öffnen Sie eine grössere Seite (z.B. www.uni-salzburg.at) welche HTTP Status
-Codes treten auf? Was bedeuten Sie?}}
+Codes treten auf? Was bedeuten Sie?}}\\
+Site: uni-salzburg.at\\
+Statuscodes:
+\begin{itemize}
+	\item 200 OK: Angefragter Inhalt wird ausgeliefert.
+	\item 301 Moved Permanently: Permanenter Redirect. In diesem Fall eine Weiterleitung vom Port 80 (http) auf Port 443
+	(https). Erst danach wird der content ausgeliefert.
+	\item 302 Moved Temporarily: Redirect auf definierte Error-Seite bei request einer nicht vorhandenen datei.
+	\item 404 Not Found: Tritt nie auf. Immer redirect auf eine vordefinierte Error Seite.
+\end{itemize}
 
 \section*{Aufgabe 4}
 \textbf{\textit{Wie sind HTTP 1.1 request und response prinzipiell aufgebaut? Illustrieren Sie mit einem
