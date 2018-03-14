@@ -72,8 +72,70 @@ Statuscodes:
 
 \section*{Aufgabe 4}
 \textbf{\textit{Wie sind HTTP 1.1 request und response prinzipiell aufgebaut? Illustrieren Sie mit einem
-eigenen Beispiel!}}
+eigenen Beispiel!}}\\
+Aufbau:
+\begin{verbatimtab}
+Request = Request-Line
+	  headers
+	  CRLF
+	  message body
+			
+Request-Line = Method SP Request-URI SP HTTP-Version CRLF
+Method 		 = "PUT" | "GET" | "POST" | .....
+RequestURI   = Pfad zur angefragten Datei
+HTTP-Version = Protokoll version
 
+headers 	 = Accept-* | Authorization | Expect | From | Host 
+		| User-Agent | Max-Forwards | cache-control |....
+
+Response = Status-Line
+	   headers
+	   CRLF
+	   message-body
+
+Status-Line   = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
+Status-Code   = "1xx", "2xx", "3xx", "4xx", "5xx"
+Reason-Phrase = "OK", "Not Found", "Permanent Redirect"
+
+headers = Accept-Ranges | Age | ETag | Location | Proxy-Authenticate
+		| Retry-After | Server | Vary | WWW-Authenticate |....
+
+\end{verbatimtab}
+Beispiele (apple.com):\\
+Request:\\
+\begin{verbatim}
+Request URL:https://www.apple.com/
+Request Method:GET
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,
+image/webp,image/apng,*/*;q=0.8
+Accept-Encoding:gzip, deflate, br
+Accept-Language:en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:max-age=0
+Connection:keep-alive
+Host:www.apple.com
+Upgrade-Insecure-Requests:1
+User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
+(KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.55
+\end{verbatim}
+
+Response:\\
+\begin{verbatim}
+Status Code:200 OK
+Cache-Control:max-age=0
+Connection:keep-alive
+Content-Encoding:gzip
+Content-Length:6434
+Content-Type:text/html; charset=UTF-8
+Date:Wed, 14 Mar 2018 13:02:58 GMT
+Expires:Wed, 14 Mar 2018 13:02:58 GMT
+Server:Apache
+Vary:Accept-Encoding
+X-Content-Type-Options:nosniff
+X-Frame-Options:SAMEORIGIN
+X-Xss-Protection:1; mode=block
+\end{verbatim}
+
+Quelle: https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
 \section*{Aufgabe 5}
 \textbf{\textit{Gruppe: Was bedeuten folgende Felder im HTTP request und response header? DNT,
 Connection: keep-alive, ETag, Content-Length}}
