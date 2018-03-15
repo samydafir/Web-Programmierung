@@ -18,8 +18,11 @@
 
 \section*{Aufgabe 1}
 \textbf{\textit{Gruppe: Konfigurieren Sie im Webserver einen VirtualHost, der auf port 8765 lauscht.
-Erstellen Sie ein separates DocumentRoot für diesen VirtualHost.}}
-
+Erstellen Sie ein separates DocumentRoot für diesen VirtualHost.}}\\
+Zum Konfigurieren eines VirtualHost muss man in /etc/apache2/sites-available/ eine neue .conf Datei erstellen. In dieser Datei soll nun der VirtualHost eingetragen werden und auf welchem Port er lauscht. \\
+\textit{$<$VirtualHost *:8765$>$ ... $<$/VirtualHost$>$} $\Rightarrow$ Angabe auf welchen Port er reagieren soll\\
+\textit{DocumentRoot /var/www/virtualHost/} $\Rightarrow$ Angabe wo das Basisverzeichnis liegt \\
+\textit{sudo a2ensite virtualHost.conf} $\Rightarrow$ VirtualHost aktivieren
 
 \section*{Aufgabe 2}
 \textbf{\textit{Erstellen Sie eine passwortgeschützte URL. Verwenden Sie digest authentication. Was ist
@@ -46,14 +49,14 @@ Verwendung:
 Settings:
 \begin{itemize}
 	\item AuthType: Authentcation Type (digest/basic)
-	\item AuthName: Realm name. Muss mit realm im password-file übereinstimmen. 
+	\item AuthName: Realm name. Muss mit realm im password-file übereinstimmen.
 	\item AuthDigestAlgorithm: Hash Algorithmus (MD5)
 	\item AuthDigestNonceLifetime: Zeitraum für den der aktuelle Zufallswert gültig ist (in s)
 	\item AuthDigestDomain: Domains für die diese Authentifizierung gültig ist
 	\item AuthDigestQop: Quality of Protection. Nur username/passwort oder + integrity check
 	\item AuthUserFile: Pfad zum password file
 	\item Require: Gibt Voraussetzungen für Zutritt an: all granted, alldenied, valid-user(mit pwd file), user, group.
-\end{itemize}	
+\end{itemize}
 
 
 \section*{Aufgabe 3}
@@ -79,13 +82,13 @@ Request = Request-Line
 	  headers
 	  CRLF
 	  message body
-			
+
 Request-Line = Method SP Request-URI SP HTTP-Version CRLF
 Method 		 = "PUT" | "GET" | "POST" | .....
 RequestURI   = Pfad zur angefragten Datei
 HTTP-Version = Protokoll version
 
-headers 	 = Accept-* | Authorization | Expect | From | Host 
+headers 	 = Accept-* | Authorization | Expect | From | Host
 		| User-Agent | Max-Forwards | cache-control |....
 
 Response = Status-Line
@@ -114,7 +117,7 @@ Cache-Control:max-age=0
 Connection:keep-alive
 Host:www.apple.com
 Upgrade-Insecure-Requests:1
-User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
+User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.55
 \end{verbatim}
 
@@ -139,6 +142,12 @@ Quelle: https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
 \section*{Aufgabe 5}
 \textbf{\textit{Gruppe: Was bedeuten folgende Felder im HTTP request und response header? DNT,
 Connection: keep-alive, ETag, Content-Length}}
+\begin{itemize}
+	\item DNT: Befiehlt einer Seite, den Nutzer nicht zu tracken.
+	\item Connection: keep-alive: Mit dem Feld wird die Verbindung nicht sofort abgebrochen, sondern bis einer der beiden die Verbindung abbrechen will.
+	\item ETag: (entity tag)Das Feld dient zur Bestimmung von Änderungen an der angeforderten Ressource und wird hauptsächlich zum Caching verwendet. Dies bedeutet dass bei der ersten Anfrage der ETag vom Server mitgeschickt wird und sollte nochmal eine Anfrage auf die selben Ressourcen geschickt werden wird der ETag vom Client geschickt und sollte es sich um zweimal den selben Wert handeln schickt der Server die Ressourcen nicht nochmal sondern weist darauf hin, dass die Ressourcen noch immer die selben sind.
+	\item Content-Length: Gibt die Länge des Bodys in Bytes an.
+\end{itemize}
 
 \section*{Aufgabe 6}
 \textbf{\textit{Gruppe: Wie unterscheidet sich HTTP 1.1 von HTTP/2? Wie wird ausgehandelt welches
