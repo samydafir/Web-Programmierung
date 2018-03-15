@@ -64,8 +64,9 @@ Site: uni-salzburg.at\\
 Statuscodes:
 \begin{itemize}
 	\item 200 OK: Angefragter Inhalt wird ausgeliefert.
-	\item 301 Moved Permanently: Permanenter Redirect. In diesem Fall eine Weiterleitung vom Port 80 (http) auf Port 443
-	(https). Erst danach wird der content ausgeliefert.
+	\item 301 Moved Permanently: Permanenter Redirect. In diesem Fall eine Weiterleitung vom Port 80 (http) auf Port 443 (https).\\
+	Auf dieser Seite wird man zusätzlich noch einmal weitergeleitet nämlich von https://uni-salzburg.at/ auf https://uni-salzburg.at/index.php?id=....\\
+	Erst danach wird der content ausgeliefert.
 	\item 302 Moved Temporarily: Redirect auf definierte Error-Seite bei request einer nicht vorhandenen datei.
 	\item 404 Not Found: Tritt nie auf. Immer redirect auf eine vordefinierte Error Seite.
 \end{itemize}
@@ -101,6 +102,7 @@ headers = Accept-Ranges | Age | ETag | Location | Proxy-Authenticate
 		| Retry-After | Server | Vary | WWW-Authenticate |....
 
 \end{verbatimtab}
+Quelle: https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html\\
 Beispiele (apple.com):\\
 Request:\\
 \begin{verbatim}
@@ -112,11 +114,13 @@ Accept-Encoding:gzip, deflate, br
 Accept-Language:en-GB,en-US;q=0.9,en;q=0.8
 Cache-Control:max-age=0
 Connection:keep-alive
+Cookie:key=value....
 Host:www.apple.com
 Upgrade-Insecure-Requests:1
 User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.55
 \end{verbatim}
+
 
 Response:\\
 \begin{verbatim}
@@ -134,8 +138,6 @@ X-Content-Type-Options:nosniff
 X-Frame-Options:SAMEORIGIN
 X-Xss-Protection:1; mode=block
 \end{verbatim}
-
-Quelle: https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
 \section*{Aufgabe 5}
 \textbf{\textit{Gruppe: Was bedeuten folgende Felder im HTTP request und response header? DNT,
 Connection: keep-alive, ETag, Content-Length}}
