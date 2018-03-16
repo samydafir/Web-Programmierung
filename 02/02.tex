@@ -157,4 +157,46 @@ Connection: keep-alive, ETag, Content-Length}}
 Protokoll gesprochen wird? Zeichnen Sie den Netzwerkverkehr auf Hinweis: tcpdump +
 Wireshark oder Web Developer}}
 
+Differences:
+\begin{itemize}
+	\item binär, nicht textuell: (kompakter)
+	\item Multiplexed, parallelisiert: Mehrere Transfers über eine Verbindung
+	\item Header Kompression: weniger Daten, kleinerer Overhead
+	\item Server Push: Potentiell schnellere Response-Time. Inhalte können direkt von Server
+	mit gepusht werden. HTTP1.1: html vom browser geparsed und dann erst andere Inhalte requested.
+\end{itemize}
+
+Das Aushandeln der Verbindung funktioniert folgendermaßen:
+\begin{enumerate}
+	\item Der Client sendet eine gewöhnliche HTTP/1.1 Anfrage mit ''Upgrade''-Header:\\
+	GET / HTTP/1.1\\
+	Host: server.example.com\\
+	Connection: Upgrade, HTTP2-Settings\\
+	Upgrade: h2c\\
+	HTTP2-Settings: <base64url encoding of HTTP/2 SETTINGS payload>\\
+	''h2c'' steht hierbei für unverschlüsseltes HTTP/2. Zusätzlich wird exakt ein HTTP/2 Header-Feld angegeben.
+	\item Ein Server, der HTTP/2 nicht versteht, führt keinen Upgrade durch und sendet eine gewöhnliche HTTP/1.1 Response:\\
+	HTTP/1.1 200 OK\\
+	Content-Length: 243\\
+	Content-Type: text/html \\
+	... 
+	\item Versteht der Server HTTP/2, wird eine ''Protocol Switching''-Response zurückgegeben und ab diesem Zeitpunkt HTTP/2 verwendet:\\
+	HTTP/1.1 101 Switching Protocols \\
+	Connection: Upgrade\\
+	Upgrade: h2c \\
+	HTTP/2 connection...
+\end{enumerate}
+
+Leider konnte kein Server gefunden werden, der Requests auf HTTP/2 upgraded, deshalb wurde ein Beispiel-Capture heruntergeladen (siehe h2-14-plain-nghttp2.pcapng).
+In diesem ist nach Filterung auf ''http'' der Anfrageverlauf mit Upgrade auf HTTP/2 sichtbar.
 \end{document}
+
+
+
+
+
+
+
+
+
+
