@@ -37,12 +37,57 @@ den Status 200 OK (falls das Dokument existiert und der Server erreichbar ist na
 \textbf{\textit{Zeichnen Sie das HTTP-Protokoll auf wenn Sie sich zu http://pmeerw.net/www-mm18/geheim verbinden. Username und Passwort sind geheim, geheim. Welche HTTP Requests bzw. Responses und welche Status Codes treten auf und was bedeuten sie? Wann muss das Passwort erneut eingegeben werden?}}\\
 
 \section*{Aufgabe 5}
-\textbf{\textit{Erstellen Sie eine ’persönliche’ Seite in HTML5 fur sich (Name, Adresse, Kontaktmöglichkeit, Beschreibung, Bild, Lebenslauf, etc.). Achten Sie dabei ausschließlich auf die Struktur der Seite, nicht die optische Gestaltung (kein CSS).}}
+\textbf{\textit{Erstellen Sie eine ’persönliche’ Seite in HTML5 für sich (Name, Adresse, Kontaktmöglichkeit, Beschreibung, Bild, Lebenslauf, etc.). Achten Sie dabei ausschließlich auf die Struktur der Seite, nicht die optische Gestaltung (kein CSS).}}
 
 \begin{itemize}
-  \item[a] Was ist die Bedeutung von des Attributs alt bei $<img>$?
+  \item[a] Was ist die Bedeutung des Attributs alt bei $<img>$?
+  'alt' für alternate gibt einen alternative Text an, der angezeigt wird, falls das Bild nicht
+  angezeigt werden kann. 'alt' trägt auch zur Accessibility der Seite bei, das es z.B. von Screenreadern
+  gelesen wird.
   \item[b] Welche Meta-Information sollte in den Header damit die Seite (leichter) gefunden wird?
-  \item[c] Welche semantischen HTML-Tags können verwendet werden um die Struktur zu kodieren?
+  Von der Überflutung mit meta-tags wird heute abgeraten. Viel wichtiger für eine gute google-Indizierung ist
+  heute das Gesamtbild der Website:
+  \begin{itemize}
+  	\item Aussagekräftiger Titel
+  	\item Struktur der Seite selbst: Sections, Links, Bilder,... aussagekräftig benennen.
+  	\item 'description' meta Tag mit guter Beschreibung verwenden.
+  	\item Accessibility
+  	\item Mobile-friendly
+  	\item Korrekter Code
+  	\item Keine externen Weiterleitungen/Links auf die eigene Seite platzieren (don't try to fool the algorithm).
+  \end{itemize}
+  \item[c] Welche semantischen HTML-Tags können verwendet werden um die Struktur zu kodieren?\\
+  Semantische Tags sind dazu dar, Content inhaltlich zu trennen. Sie trennen sich nur manchmal auf die 
+  Formatierung aus.
+  Vollständige Liste unter:\\
+  https://www.w3schools.com/html/html5\_semantic\_elements.asp\\
+  Verwendete Elemente:\\
+  \begin{itemize}
+  	\item section
+  	\item header
+  	\item footer
+  	\item details
+  	\item summary
+  	\item time
+  \end{itemize}  
 \end{itemize}
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
