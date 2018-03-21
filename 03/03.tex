@@ -24,6 +24,14 @@
 
 \section*{Aufgabe 3}
 \textbf{\textit{Erstellen Sie weiters eine HTML-Seite, die den Browser anweist, auf eine andere Seite zu gehen (Hinweis: meta http-equiv="Refresh"). Was passiert auf HTTP-Ebene?}}\\
+Folgendes meta-tag definiert eine Weiterleitung.
+\begin{verbatim}
+<meta http-equiv="refresh" content="timeToRedirect; URL=redirectDestination">
+\end{verbatim}
+Diese Art der Weiterleitung ist im Header nicht sichtbar. Erst wird das erstellte Dokument geladen, das den redirect erhält: 200 OK. Nach der angegebenen Zeit
+erfolgt die Weiterleitung auf die angegebene Seite. Das entspricht einer clientseitigen Anforderung und ist im Header nicht als Redirect zu erkennen. Man erhält
+den Status 200 OK (falls das Dokument existiert und der Server erreichbar ist natürlich).
+
 
 \section*{Aufgabe 4}
 \textbf{\textit{Zeichnen Sie das HTTP-Protokoll auf wenn Sie sich zu http://pmeerw.net/www-mm18/geheim verbinden. Username und Passwort sind geheim, geheim. Welche HTTP Requests bzw. Responses und welche Status Codes treten auf und was bedeuten sie? Wann muss das Passwort erneut eingegeben werden?}}\\
