@@ -20,6 +20,22 @@
 
 \section*{Aufgabe 1}
 \textbf{\textit{Gruppe: Installieren Sie ein tool um das Apache log auszuwerten (Vorschlag: webalizer, analog oder awstats). Die Ergebnisse sollen über einen Link von Ihrer Homepage sichtbar sein.}}\\
+Wir verwenden 'Webalizer'\\
+Schritte, um webalizer für unsere Seite zu verwenden:\\
+\begin{enumerate}
+	\item sudo apt-get install webalizer:\\
+	Richtet webalizer für /var/www/webalizer ein.
+	\item sudo mv /var/www/webalizer /var/www/html/
+	\item Webalizer konfigurieren:\\
+	sudo nano /etc/webalizer/webalizer.conf
+	\item Settings:Logfile angeben:
+	LogFile /var/log/apache2/access.log\\
+	Output directory auf ordner in unserem web root directory $\rightarrow$ html Output und Anzeige:\\
+	OutputDir /var/www/html/webalizer
+	\item Konfig testen (webalizer starten):\\
+	sudo webalizer
+\end{enumerate}
+
 
 \section*{Aufgabe 2}
 \textbf{\textit{Gruppe: Konfigurieren Sie im Webserver einen internen redirect und einen redirect auf eine externe Seite. Wie gehen Sie vor? Was passiert auf HTTP-Ebene? Hinweis: mod rewrite}}\\
