@@ -35,19 +35,45 @@ Schritte, um webalizer für unsere Seite zu verwenden:\\
 	\item Konfig testen (webalizer starten):\\
 	sudo webalizer
 \end{enumerate}
+Quelle: http://linuxpitstop.com/install-and-configure-webalizer-on-ubuntu/
 
 
 \section*{Aufgabe 2}
 \textbf{\textit{Gruppe: Konfigurieren Sie im Webserver einen internen redirect und einen redirect auf eine externe Seite. Wie gehen Sie vor? Was passiert auf HTTP-Ebene? Hinweis: mod rewrite}}\\
+
+\textbf{mod\_rewrite:}
 \begin{itemize}
 	\item sudo a2enmod rewrite
 	\item sudo apache2 restart
-	\item In der .htaccess Datei
-	\begin{itemize}
-		\item RewriteEngine on
-		\item RewriteRule pattern substitution [flags]
-	\end{itemize}
+	\item Nach Änderungen in der Config muss apache ebenfalls neu gestartet werden.
 \end{itemize}
+\textbf{Intern:}\\
+Möglichkeit 1:
+Interner redirect. Liefert im Beispiel 'index.html' statt 'intredir.html'. Das ist für den User hier aber
+nicht erkennbar. Die Adresszeile zeigt 'intredir.html', sogar in der Netzwerkansicht der Developer Tools ist
+'intredir.html' angegeben. Dieses Verhalten wird durch das Flag PT (passthrough) erreicht
+\begin{verbatim}
+RewriteEngine  on
+RewriteRule    "^/intredir\.html$"  "/index.html" [PT]
+\end{verbatim}
+
+Möglichkeit 2:\\
+Hier wird die URL tatsächlich umgeschrieben. Der Client erhält 302 Found für die ursprüngliche URL zurück, im Location Header
+aber die Zieladresse des Redirect. Danach fragt der Client diese Adresse an und erhält das Dokument (200 OK). Flag R (redirect)
+\begin{verbatim}
+RewriteEngine  on
+RewriteRule    "^/extredir\.html$"  "/index.html" [R]
+\end{verbatim}
+
+\textbf{Extern}:\\
+Hier wir die URL auch umgeschrieben. Der Client erhält auf seine Anfrage 302 Found zurück. Zusätzlich erhält er im 
+Location Header das Ziel des Redirect. Diese wird dann mit GET angefragt und der Server (hier unter uni-salzburg.at) gibt (hier nach einem zusätzlichen redirect auf seine index.php) die Seite mit 200 OK zurück.
+Flags: R,L (redirect, last:stoppt, wenn diese Regel passt).
+\begin{verbatim}
+RewriteEngine  on
+RewriteRule    "^/othersite\.html$"  "https://uni-salzburg.at" [R,L]
+\end{verbatim}
+Quelle: Apache Dokumentation
 
 \section*{Aufgabe 3}
 \textbf{\textit{Erstellen Sie weiters eine HTML-Seite, die den Browser anweist, auf eine andere Seite zu gehen (Hinweis: meta http-equiv="Refresh"). Was passiert auf HTTP-Ebene?}}\\
@@ -62,7 +88,8 @@ den Status 200 OK (falls das Dokument existiert und der Server erreichbar ist na
 
 \section*{Aufgabe 4}
 \textbf{\textit{Zeichnen Sie das HTTP-Protokoll auf wenn Sie sich zu http://pmeerw.net/www-mm18/geheim verbinden. Username und Passwort sind geheim, geheim. Welche HTTP Requests bzw. Responses und welche Status Codes treten auf und was bedeuten sie? Wann muss das Passwort erneut eingegeben werden?}}\\
-Es wird das HTTP/1.1 benutt. Nach dem GET request bekommen wir den Status Code 302: Found (Umleitung). Das Passwort muss nicht nochmal angegeben werden solange man den Cache seines Browsers nicht löscht.
+Es wird das HTTP/1.1 benutzt. Zuerst erhält man einen Status 401 Not Authorized. Die Response enthält außerden einen WWW-Authenticate Header, der den Client (Browser) anweist, eine Anmeldung zu starten. Gibt man falsche Daten ein, erhält man immer wieder die gleiche Response. Nach erfolgreicher Authentifizierung wird das Dokument mit Status 200 zurückgegeben. Nach dem GET request bekommen wir den Status Code 302: Found (Umleitung). Das Passwort muss nicht nochmal angegeben werden solange man den Cache seines Browsers nicht löscht.\\
+
 
 \section*{Aufgabe 5}
 \textbf{\textit{Erstellen Sie eine ’persönliche’ Seite in HTML5 für sich (Name, Adresse, Kontaktmöglichkeit, Beschreibung, Bild, Lebenslauf, etc.). Achten Sie dabei ausschließlich auf die Struktur der Seite, nicht die optische Gestaltung (kein CSS).}}
@@ -74,7 +101,8 @@ Es wird das HTTP/1.1 benutt. Nach dem GET request bekommen wir den Status Code 3
   gelesen wird.
   \item[b] Welche Meta-Information sollte in den Header damit die Seite (leichter) gefunden wird?
   Von der Überflutung mit meta-tags wird heute abgeraten. Viel wichtiger für eine gute google-Indizierung ist
-  heute das Gesamtbild der Website:
+  heute das Gesamtbild der Website:\\
+  Quelle: https://moz.com/blog/seo-meta-tags
   \begin{itemize}
   	\item Aussagekräftiger Titel
   	\item Struktur der Seite selbst: Sections, Links, Bilder,... aussagekräftig benennen.
