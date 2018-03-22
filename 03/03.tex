@@ -39,6 +39,15 @@ Schritte, um webalizer für unsere Seite zu verwenden:\\
 
 \section*{Aufgabe 2}
 \textbf{\textit{Gruppe: Konfigurieren Sie im Webserver einen internen redirect und einen redirect auf eine externe Seite. Wie gehen Sie vor? Was passiert auf HTTP-Ebene? Hinweis: mod rewrite}}\\
+\begin{itemize}
+	\item sudo a2enmod rewrite
+	\item sudo apache2 restart
+	\item In der .htaccess Datei
+	\begin{itemize}
+		\item RewriteEngine on
+		\item RewriteRule pattern substitution [flags]
+	\end{itemize}
+\end{itemize}
 
 \section*{Aufgabe 3}
 \textbf{\textit{Erstellen Sie weiters eine HTML-Seite, die den Browser anweist, auf eine andere Seite zu gehen (Hinweis: meta http-equiv="Refresh"). Was passiert auf HTTP-Ebene?}}\\
@@ -53,6 +62,7 @@ den Status 200 OK (falls das Dokument existiert und der Server erreichbar ist na
 
 \section*{Aufgabe 4}
 \textbf{\textit{Zeichnen Sie das HTTP-Protokoll auf wenn Sie sich zu http://pmeerw.net/www-mm18/geheim verbinden. Username und Passwort sind geheim, geheim. Welche HTTP Requests bzw. Responses und welche Status Codes treten auf und was bedeuten sie? Wann muss das Passwort erneut eingegeben werden?}}\\
+Es wird das HTTP/1.1 benutt. Nach dem GET request bekommen wir den Status Code 302: Found (Umleitung). Das Passwort muss nicht nochmal angegeben werden solange man den Cache seines Browsers nicht löscht.
 
 \section*{Aufgabe 5}
 \textbf{\textit{Erstellen Sie eine ’persönliche’ Seite in HTML5 für sich (Name, Adresse, Kontaktmöglichkeit, Beschreibung, Bild, Lebenslauf, etc.). Achten Sie dabei ausschließlich auf die Struktur der Seite, nicht die optische Gestaltung (kein CSS).}}
@@ -75,7 +85,7 @@ den Status 200 OK (falls das Dokument existiert und der Server erreichbar ist na
   	\item Keine externen Weiterleitungen/Links auf die eigene Seite platzieren (don't try to fool the algorithm).
   \end{itemize}
   \item[c] Welche semantischen HTML-Tags können verwendet werden um die Struktur zu kodieren?\\
-  Semantische Tags sind dazu dar, Content inhaltlich zu trennen. Sie trennen sich nur manchmal auf die 
+  Semantische Tags sind dazu dar, Content inhaltlich zu trennen. Sie trennen sich nur manchmal auf die
   Formatierung aus.
   Vollständige Liste unter:\\
   https://www.w3schools.com/html/html5\_semantic\_elements.asp\\
@@ -87,25 +97,7 @@ den Status 200 OK (falls das Dokument existiert und der Server erreichbar ist na
   	\item details
   	\item summary
   	\item time
-  \end{itemize}  
+  \end{itemize}
 \end{itemize}
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
