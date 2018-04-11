@@ -24,20 +24,111 @@ Sie dazu ein self-signed certificate. Notieren Sie die Schritte die Sie durchgef
 bzw. erklären Sie die Schritte die Sie in einem Tutorial gefunden haben. HTTPS mit dem self-signed certificate soll auf Port 
 8443 angeboten werden. Zeigen Sie im Browser, dass ihr Zertifikat funktioniert.}}\\
 \begin{enumerate}
-	\item 
+	\item SSL Modul aktivieren:
+	\begin{verbatim}
+sudo a2enmod ssl
+	\end{verbatim}
+	\item Directory für Keys erstellen und Berechtigungen setzen:
+	\begin{verbatim}
+sudo mkdir /etc/apache2/ssl
+sudo chmod -r 600 /etc/apache2/ssl
+	\end{verbatim}
+	\item Key und Zertifikat erstellen:
 	\begin{verbatim}
 sudo openssl req -x509 -nodes -days 1095 -newkey rsa:2048 
 -keyout /etc/apache2/ssl/self_signed.key 
 -out /etc/apache2/ssl/self_signed.crt
 	\end{verbatim}
 	\item info ausfüllen: WICHTIG: Common name / server name / IP address
-	\item 
+	\item Default SSL site kopieren und konfigurieren:
+	\begin{verbatim}
+<VirtualHost _default_:8443>	
+ServerName buntmeise.cosy.sbg.ac.at
+DocumentRoot /etc/apache2/html
+SSLCertificateFile /etc/apache2/ssl/self_signed.crt
+SSLCertificateKeyFile /etc/apache2/ssl/self_signed.key
+	\end{verbatim}
+\item Port in Apache setzen:
+	\begin{verbatim}
+<IfModule ssl_module>
+	Listen 8443
+</IfModule>
+	\end{verbatim}
+\item Site aktivieren:
+	\begin{verbatim}
+sudo a2ensite neue_ssl_site.conf
+	\end{verbatim}	
+	\item Apache neu starten:
+	\begin{verbatim}
+sudo service apache2 restart
+	\end{verbatim}
+\item Die Seite ist jetzt erreichbar unter:\\
+https://buntmeise.cosy.sbg.ac.at:8443
 \end{enumerate}
-
+Quelle; https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04
 
 \section*{Aufgabe 2}
 \textbf{\textit{Gruppe: Installieren Sie ein SSL Zertifikation von https://letsencrypt.org/ für die
-Verwendung auf Port 443. Was ist der Unterschied zu einem self-signed Zertifikat?}}
+Verwendung auf Port 443. Was ist der Unterschied zu einem self-signed Zertifikat?}}\\
+\begin{enumerate}
+	\item Certbot installieren:
+	\begin{verbatim}
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-apache 
+	\end{verbatim}
+	\item Certbot ausführen. $certonly$ verwendet, damit certbot die apache config nicht verändert. Zertifikat wird unter $/etc/letsencrypt$ erstellt.
+	\begin{verbatim}
+sudo certbot --apache certonly
+	\end{verbatim}
+	\item Default SSL site kopieren und konfigurieren:
+	\begin{verbatim}
+<VirtualHost _default_:443>	
+ServerName buntmeise.cosy.sbg.ac.at
+DocumentRoot /etc/apache2/html
+Include /etc/letsencrypt/options-ssl-apache.conf
+SSLCertificateFile /etc/letsencrypt/live/buntmeise.cosy.sbg.ac.at/
+fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/buntmeise.cosy.sbg.ac.at/
+privkey.pem
+	\end{verbatim}
+	\item Port in Apache setzen:
+	\begin{verbatim}
+<IfModule ssl_module>
+Listen 443
+</IfModule>
+	\end{verbatim}
+	\item Site aktivieren:
+	\begin{verbatim}
+sudo a2ensite letsencrypt_site.conf
+	\end{verbatim}	
+	\item Apache neu starten:
+	\begin{verbatim}
+sudo service apache2 restart
+	\end{verbatim}
+	\item Die Seite ist jetzt erreichbar unter:\\
+	https://buntmeise.cosy.sbg.ac.at:443
+	\item Zusätzlich setzen wir folgende Einstellungen, um die Verschlüsselungsqualität zu maximieren. Wir erlauben nur TLSv1.2 und starke Cipher Algorithmen:
+	\begin{verbatim}
+SSLProtocol         all -SSLv3 -TLSv1 -TLSv1.1
+SSLCipherSuite      ECDHE-ECDSA-AES256-GCM-SHA384:
+ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:
+ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:
+ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:
+ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:
+ECDHE-RSA-AES128-SHA256
+SSLHonorCipherOrder on
+SSLCompression      off
+SSLSessionTickets   off
+	\end{verbatim}
+\end{enumerate}
+Quellen:\\
+https://certbot.eff.org/lets-encrypt/ubuntuxenial-apache\\
+https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04\\
+https://httpd.apache.org/docs/trunk/ssl/ssl\_howto.html
+
 
 \section*{Aufgabe 3}
 \textbf{\textit{Gruppe: Spielen Sie mit https://www.ssllabs.com/ssltest/. Welche Grade erreicht
