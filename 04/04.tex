@@ -123,6 +123,7 @@ SSLHonorCipherOrder on
 SSLCompression      off
 SSLSessionTickets   off
 	\end{verbatim}
+Ein self-signed Zertifikat ermöglicht nur die Verschlüsselung der Verbindung, bestätigt jedoch nicht die Identität des Servers, da es von keiner Certificate Authority signiert ist. Das führt dazu, dass Browser beim Besuch der Seite warnen (kein grünes Schloss). Das Zertifikat von letsencrypt ist jedoch von einer CA signiert $\rightarrow$ Identität bestätigt. 
 \end{enumerate}
 Quellen:\\
 https://certbot.eff.org/lets-encrypt/ubuntuxenial-apache\\
