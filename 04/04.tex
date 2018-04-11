@@ -1,0 +1,63 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{hyperref}
+
+
+\title{Übungsblatt 02}
+\author{Thomas Samy Dafir, Lex Winandy}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+\section*{Aufgabe 1}
+\textbf{\textit{Gruppe: Erweitern Sie Ihren Apachen so, dass auch HTTPS unterstützt wird. Erstellen
+Sie dazu ein self-signed certificate. Notieren Sie die Schritte die Sie durchgeführt haben,
+bzw. erklären Sie die Schritte die Sie in einem Tutorial gefunden haben. HTTPS mit dem self-signed certificate soll auf Port 
+8443 angeboten werden. Zeigen Sie im Browser, dass ihr Zertifikat funktioniert.}}\\
+\begin{enumerate}
+	\item 
+	\begin{verbatim}
+sudo openssl req -x509 -nodes -days 1095 -newkey rsa:2048 
+-keyout /etc/apache2/ssl/self_signed.key 
+-out /etc/apache2/ssl/self_signed.crt
+	\end{verbatim}
+	\item info ausfüllen: WICHTIG: Common name / server name / IP address
+	\item 
+\end{enumerate}
+
+
+\section*{Aufgabe 2}
+\textbf{\textit{Gruppe: Installieren Sie ein SSL Zertifikation von https://letsencrypt.org/ für die
+Verwendung auf Port 443. Was ist der Unterschied zu einem self-signed Zertifikat?}}
+
+\section*{Aufgabe 3}
+\textbf{\textit{Gruppe: Spielen Sie mit https://www.ssllabs.com/ssltest/. Welche Grade erreicht
+die e-commerce site Ihres Vertrauens? Welche Sicherheit erreicht Ihre Meise? Testen Sie
+mit dem Skript testssl.sh von http://testssl.sh/ Ihren Server!}}
+
+\section*{Aufgabe 4}
+\textbf{\textit{Jeder: Erstellen Sie eine HTML-Seite ohne CSS die in etwa so aussieht wie unten angegeben.
+Überprüfen Sie das Ergebnis mit dem Validator. Vergleichen Sie das Ergebnis
+mit zumindest zwei Browsern (Screenshot!)}}
+
+\section*{Aufgabe 5}
+\textbf{\textit{Jeder: Erstellen Sie ein Such-Formular, das Anfragen an http://google.com/search
+per GET request richtet (q=). Ihr Formular soll die Anzahl der Ergebnisse einschränken
+können (num=, per Dropdown-Auswahl).
+Lesen Sie: http://moz.com/ugc/the-ultimate-guide-to-the-google-search-parameters}}
+
+\section*{Aufgabe 6}
+\textbf{\textit{Jeder: Was ist der Unterschied zwischen HTTP GET und POST? Was sind die Vor- und
+Nachteile? Recherchieren Sie! Zeichnen Sie die jeweiligen requests auf und analysieren
+Sie die Unterschiede!}}
+
+\end{document}
