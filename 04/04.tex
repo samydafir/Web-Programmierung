@@ -21,7 +21,7 @@
 \section*{Aufgabe 1}
 \textbf{\textit{Gruppe: Erweitern Sie Ihren Apachen so, dass auch HTTPS unterstützt wird. Erstellen
 Sie dazu ein self-signed certificate. Notieren Sie die Schritte die Sie durchgeführt haben,
-bzw. erklären Sie die Schritte die Sie in einem Tutorial gefunden haben. HTTPS mit dem self-signed certificate soll auf Port 
+bzw. erklären Sie die Schritte die Sie in einem Tutorial gefunden haben. HTTPS mit dem self-signed certificate soll auf Port
 8443 angeboten werden. Zeigen Sie im Browser, dass ihr Zertifikat funktioniert.}}\\
 \begin{enumerate}
 	\item SSL Modul aktivieren:
@@ -35,14 +35,14 @@ sudo chmod -r 600 /etc/apache2/ssl
 	\end{verbatim}
 	\item Key und Zertifikat erstellen:
 	\begin{verbatim}
-sudo openssl req -x509 -nodes -days 1095 -newkey rsa:2048 
--keyout /etc/apache2/ssl/self_signed.key 
+sudo openssl req -x509 -nodes -days 1095 -newkey rsa:2048
+-keyout /etc/apache2/ssl/self_signed.key
 -out /etc/apache2/ssl/self_signed.crt
 	\end{verbatim}
 	\item info ausfüllen: WICHTIG: Common name / server name / IP address
 	\item Default SSL site kopieren und konfigurieren:
 	\begin{verbatim}
-<VirtualHost _default_:8443>	
+<VirtualHost _default_:8443>
 ServerName buntmeise.cosy.sbg.ac.at
 DocumentRoot /etc/apache2/html
 SSLCertificateFile /etc/apache2/ssl/self_signed.crt
@@ -57,7 +57,7 @@ SSLCertificateKeyFile /etc/apache2/ssl/self_signed.key
 \item Site aktivieren:
 	\begin{verbatim}
 sudo a2ensite neue_ssl_site.conf
-	\end{verbatim}	
+	\end{verbatim}
 	\item Apache neu starten:
 	\begin{verbatim}
 sudo service apache2 restart
@@ -77,7 +77,7 @@ sudo apt-get update
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
-sudo apt-get install python-certbot-apache 
+sudo apt-get install python-certbot-apache
 	\end{verbatim}
 	\item Certbot ausführen. $certonly$ verwendet, damit certbot die apache config nicht verändert. Zertifikat wird unter $/etc/letsencrypt$ erstellt.
 	\begin{verbatim}
@@ -85,7 +85,7 @@ sudo certbot --apache certonly
 	\end{verbatim}
 	\item Default SSL site kopieren und konfigurieren:
 	\begin{verbatim}
-<VirtualHost _default_:443>	
+<VirtualHost _default_:443>
 ServerName buntmeise.cosy.sbg.ac.at
 DocumentRoot /etc/apache2/html
 Include /etc/letsencrypt/options-ssl-apache.conf
@@ -103,7 +103,7 @@ Listen 443
 	\item Site aktivieren:
 	\begin{verbatim}
 sudo a2ensite letsencrypt_site.conf
-	\end{verbatim}	
+	\end{verbatim}
 	\item Apache neu starten:
 	\begin{verbatim}
 sudo service apache2 restart
@@ -123,7 +123,7 @@ SSLHonorCipherOrder on
 SSLCompression      off
 SSLSessionTickets   off
 	\end{verbatim}
-Ein self-signed Zertifikat ermöglicht nur die Verschlüsselung der Verbindung, bestätigt jedoch nicht die Identität des Servers, da es von keiner Certificate Authority signiert ist. Das führt dazu, dass Browser beim Besuch der Seite warnen (kein grünes Schloss). Das Zertifikat von letsencrypt ist jedoch von einer CA signiert $\rightarrow$ Identität bestätigt. 
+Ein self-signed Zertifikat ermöglicht nur die Verschlüsselung der Verbindung, bestätigt jedoch nicht die Identität des Servers, da es von keiner Certificate Authority signiert ist. Das führt dazu, dass Browser beim Besuch der Seite warnen (kein grünes Schloss). Das Zertifikat von letsencrypt ist jedoch von einer CA signiert $\rightarrow$ Identität bestätigt.
 \end{enumerate}
 Quellen:\\
 https://certbot.eff.org/lets-encrypt/ubuntuxenial-apache\\
@@ -134,7 +134,12 @@ https://httpd.apache.org/docs/trunk/ssl/ssl\_howto.html
 \section*{Aufgabe 3}
 \textbf{\textit{Gruppe: Spielen Sie mit https://www.ssllabs.com/ssltest/. Welche Grade erreicht
 die e-commerce site Ihres Vertrauens? Welche Sicherheit erreicht Ihre Meise? Testen Sie
-mit dem Skript testssl.sh von http://testssl.sh/ Ihren Server!}}
+mit dem Skript testssl.sh von http://testssl.sh/ Ihren Server!}}\\
+Angeschaut haben wir uns die Seite \url{https://www.kinguin.net/}. Sie erhielt folgendes Rating:\\
+\includegraphics[height=5cm]{kinguin.png}
+
+Unsere Meise erhielt folgende Bewertung:\\
+\includegraphics[height=5cm]{meise.png}
 
 \section*{Aufgabe 4}
 \textbf{\textit{Jeder: Erstellen Sie eine HTML-Seite ohne CSS die in etwa so aussieht wie unten angegeben.
