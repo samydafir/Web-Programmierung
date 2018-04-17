@@ -1,0 +1,40 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{hyperref}
+
+
+\title{Übungsblatt 02}
+\author{Thomas Samy Dafir, Lex Winandy}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+\section*{Aufgabe 1}
+
+
+
+
+\section*{Aufgabe 2}
+
+\section*{Aufgabe 3}
+
+Implementierung siehe Links auf persönlichen Seiten unter $buntmeise.cosy.sbg.ac.at$\\
+Funktionsprinzip: Datei wird geöffnet (read reicht aus). Mittels einer Schleife wird über alle Zeilen iteriert und jede Zeile
+für sich analysiert. Die IP-Addresse wird extrahiert (erster String in jeder Zeile). Wurde die Adresse bereits gefunden, wird der Eintrag im Dictionary inkrementiert, ansonsten wird 1 eingefügt (1. Vorkommen der Adresse).
+
+\section*{Aufgabe 4}
+Implementierung siehe Links auf persönlichen Seiten unter $buntmeise.cosy.sbg.ac.at$\\
+Das Modul $urllib3$ wird importiert. Ein ConnectionPool wird erstellt (zwar führen wir nur einen Request durch, der Pool vereinfacht aber die Handhabung). Für das Request benötigen wir die HTTP-Method und eine URL. Nach Ausführen des Requests können der Statuscode und die Header über <resuest-object>. status bzw. <resuest-object>.headers ausgelesen werden.
+
+
+
+\end{document}
