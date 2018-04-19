@@ -8,7 +8,7 @@
 \usepackage{float}
 \usepackage{moreverb}
 \usepackage{hyperref}
-
+\setlength{\parindent}{0em} 
 
 \title{Übungsblatt 02}
 \author{Thomas Samy Dafir, Lex Winandy}
@@ -19,8 +19,37 @@
 \maketitle
 
 \section*{Aufgabe 1}
+\begin{itemize}
 
+\item Folgendes zu $apache2.conf$ hinzufügen:
+\begin{verbatim}
+<Directory /home/*/public\_html>
+	Options +ExecCGI
+	AddHandler cgi-script .cgi
+</Directory>
+\end{verbatim}
+\item CGI Modul aktivieren:
+\begin{verbatim}
+sudo a2enmod cgi
+\end{verbatim}
 
+\item $test.py$ unter ~/public\_html erstellen\\
+
+\item Folgendes in $test.py$ einfügen:
+\begin{verbatim}
+#!/usr/bin/python
+
+print 'Content-type: text/html'
+print 'hallo!'
+\end{verbatim}
+
+\item Symbolischen Link erstellen cgi $\rightarrow$ py:
+\begin{verbatim}
+ln -s test.py test.cgi
+\end{verbatim}
+
+\item Aufruf über:\\ $http://meise.cosy.sbg.ac.at/~user/test.cgi$
+\end{itemize}
 
 
 \section*{Aufgabe 2}
