@@ -1,0 +1,61 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{hyperref}
+\setlength{\parindent}{0em} 
+
+\title{Übungsblatt 07}
+\author{Thomas Samy Dafir, Lex Winandy}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+\section*{Aufgabe 1}
+Link zur Lösung aufrufbar unter:\\
+$buntmeise.cosy.sbg.ac.at$\\
+Funktionsweise:\\
+\begin{itemize}
+	\item Formular implementiert mit Monats- und Jahreseingabe.
+	\item Dieses Formular wird an 'b07\_a01.cgi' gesendet
+	\item Daten wierden mittels 'FieldStorage' extrahiert.
+	\item Mit 'subprocess.Popen' rufen wir 'cal' mit Monat und Jahr als Argumente auf und 'pipen' das Resultat, um
+	es dann auszulesen und in einer Variable zu speichern.
+	\item Der Kalender-String wird dann von 'pre' Tags umgeben und ausgegeben
+\end{itemize}
+
+\section*{Aufgabe 2}
+Link zur Lösung aufrufbar unter:\\
+$buntmeise.cosy.sbg.ac.at$\\
+Funktionsweise:\\
+\begin{itemize}
+	\item Öffnen der Datei 'counter.txt' im 'r+' Modus, der lesen, swie schreiben erlaubt.
+	\item Um inkrementieren und zurücksetzen zu ermöglichen, implementieren wir Buttons:\\
+	Ein button inkrementiert, der andere setzt den Zähler zurück.
+	\item Auf die Formulardaten greifen wir mit 'cgi.FieldStorage' zu.
+	\item FieldStorage wird auf den 'action' key geprüft, um zu checken, ob ein Button gedrückt wurde.
+	\item Wurde kein Button gedrückt, wird der aktuelle Wert in 'counter.txt' zurückgegeben.
+	\item Wurde 'reset' geklickt, wird der counter zurückgesetzt (das File geleert und 1 geschrieben).
+	\item Wurde 'increment' geklickt, wird der Wert im File gelesen, das File geleert und der inkrementierte
+	Wert geschrieben.
+\end{itemize}
+
+Gleichzeitiger Zugriff:
+Implementiert durch ein einfaches cmd script, dass 
+
+
+
+
+\section*{Aufgabe 3}
+
+\section*{Aufgabe 4}
+
+
+\end{document}
