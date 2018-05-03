@@ -11,7 +11,7 @@ try:
     process = subprocess.Popen(["cal", "-h", data['month'].value, data['year'].value], stdout=subprocess.PIPE)
     output = process.stdout.read()
 except:
-    output = 'Input nicht vorhanden oder im falschen Format'
+    output = "Input not present or in wrong format"
 
 html = """
 <html>

@@ -13,7 +13,8 @@ Get Calendar
 Month
 </h5>
 <form method="get" action="b07_a01.cgi">
-    <select class="form-control col-md-3" name="month">
+    <select class="form-control col-md-3" name="month" required>
+	<option selected disabled>choose month</option>
         <option value="1">January</option>
 	<option value="2">February</option>
         <option value="3">March</option>
@@ -30,7 +31,7 @@ Month
     <h5>
     Year
     </h5>
-    <input class="form-control col-md-3" type="number" name="year" placeholder="year" required>
+    <input class="form-control col-md-3" type="number" min="1" name="year" placeholder="year" required>
 
 <br>
 <input type="submit" class="btn btn-primary">
