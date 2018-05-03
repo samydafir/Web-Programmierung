@@ -18,9 +18,9 @@
 \begin{document}
 \maketitle
 
+Links zu allen Lösungen sind unter $buntmeise.sbg.ac.at$ aufrufbar.
+
 \section*{Aufgabe 1}
-Link zur Lösung aufrufbar unter:\\
-$buntmeise.cosy.sbg.ac.at$\\
 Funktionsweise:\\
 \begin{itemize}
 	\item Formular implementiert mit Monats- und Jahreseingabe.
@@ -32,8 +32,6 @@ Funktionsweise:\\
 \end{itemize}
 
 \section*{Aufgabe 2}
-Link zur Lösung aufrufbar unter:\\
-$buntmeise.cosy.sbg.ac.at$\\
 Funktionsweise:\\
 \begin{itemize}
 	\item Öffnen der Datei 'counter.txt' im 'r+' Modus, der lesen, swie schreiben erlaubt.
@@ -48,12 +46,18 @@ Funktionsweise:\\
 \end{itemize}
 
 Gleichzeitiger Zugriff:
-Implementiert durch ein einfaches cmd script, dass 
-
-
-
+Implementiert durch ein einfaches cmd script, dass einen Browser öffnet und die 'increment Seite' mehrfach gleichzeitig aufruft.
 
 \section*{Aufgabe 3}
+Verwendete Module: os, cgi, Cookie\\
+Funktionsweise:\\
+\begin{itemize}
+	\item Ein Cookie und ein FieldStorage Objekt werden erstellt.
+	\item Ist das 'visited' Cookie nicht vorhanden, wird es erstellt und als Header ausgegeben.
+	\item ist das Cookie bereits gesetzt, erfolgt keine Aktion. Status wird ausgegeben.
+	\item Ist das Cookie gesetzt und Löschen wurde angefordert, wird das Cookie gelöscht: Eintrag im Cookie dictionary wird gelöscht und 'expires' auf ein vergangenes Datum gesetzt. Der mitgesendete Set-Cookie Header weist den Browser an, das Cookie zu löschen.
+\end{itemize}
+
 
 \section*{Aufgabe 4}
 
