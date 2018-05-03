@@ -17,7 +17,7 @@ if 'HTTP_COOKIE' in os.environ:
 if "colour_id" in cookie:
     colours = pickle.load(open("/tmp/pickle.p", "rb"))
     colour = cookie['colour_id'].value
-    if "colour_id" in data.keys():
+    if "colour_id" in data.keys() and data['colour_id'].value in colours.keys():
         cookie['colour_id'] = data['colour_id'].value
         colour = data['colour_id'].value
 

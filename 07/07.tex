@@ -60,6 +60,17 @@ Funktionsweise:\\
 
 
 \section*{Aufgabe 4}
+Module: cgi, Cookie, os, cPickle\\
+Funktionsweise:\\
+\begin{itemize}
+	\item FieldStorage and Cookie Objekt werden erstellt
+	\item Mit os.environ wird überprüft, ob ein Cookie gesetzt wird. Falls ja, wird dieses ins Cookie Objekt geladen.
+	\item Es wird überprüft, ob 'colour\_id' im Cookie existiert. Falls ja wird pickle geladen und der zur id gehörende Farbwert ausgelesen
+	\item Wurde zusätzlich eine Farbe mit dem Request übermittelt und ist diese definiert, wird die ID gelesen, umgesetzt, als neue Farbe für die Anzeige definiert und im Cookie gespeichert.
+	\item Wurde noch kein Cookie gesetzt, wird das dictionary für pickle initialisiert und gespeichert, sowie das Cookie gesetzt.
+	\item Die Farbe wird durch einen inline css style im body Tag gesetzt.
+\end{itemize}
+
 
 
 \end{document}
