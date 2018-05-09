@@ -1,0 +1,56 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{hyperref}
+\setlength{\parindent}{0em} 
+
+\title{Übungsblatt 08}
+\author{Thomas Samy Dafir, Lex Winandy}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+\section*{Aufgabe 1}
+XSS beizeichnet das einschleusen von Fremdcode (meist Schadcode) auf eine Website. Eine Site ist durch XSS angreifbar, wenn user-input unvalidiert verwendet wird. Man untercheidet 2 Arten von XSS:
+\begin{itemize}
+	\item Nicht persistent: Durch übergebene Argumente, die am Server nicht validiert werden, kann direkt Schaden angerichtet werden, wie etwa Zugriff auf nicht freigegebene Daten oder überschreiben von Daten am Webserver.
+	\item Persistent: Gleiche Ursache: keine Validierung. Hier wird jedoch Schadcode eingeschleust, der bleibt, da er entweder in einer Datenbank abgelegt, oder direkt auf der Website verwendet wird. Standarsbeispiel dafür ist ein Gästebuch, ohne Validierung der User-Einträge.
+\end{itemize}
+$document.location$ ermöglicht es, die aktuelle Seite zu wechseln. Dadurch könnte der User z.B. auf eine gleich aussehende, aber bösartige Seite umgeleitet werden.
+Verhindert werden kann XSS durch Validierung der Eingaben und am Besten durch Verwendung eines Positive-Security-Models: Der Entwickler gibt genau an, welche Eingaben erlaubt sind, anstatt welche nicht erlaubt sind.\\
+Lösung:\\
+Positive-Security-Model: Zuerst wird whitespace am Anfang und Ende der Eingabe entfernt, dann ein Regex Pattern überprüft, das nur matched, wenn die eingabe eine Ganz- oder Kommazahl ist. Abschließend wird ein float-Cast durchgeführt. Matched das Pattern nicht, oder (was nicht mehr vorkommen sollte) wirft der Cast einen ValueError, wird die Eingabe nicht verwendet und der User angewiesen es erneut zu probieren.\\
+Links zur Lösung auf den persönlichen Seiten.
+
+
+\section*{Aufgabe 2}
+Templates vereinfachen den Entwicklungsprozess, da Code z.B. HTML Code wiederverwendet werden kann, und nicht immer wieder neu geschrieben werden muss. Diese Templates können dynamisch angepasst und an den Anwendungsfall angepasst werden. Templates werden in einem beliebigen Format gespeichert und Platzhalter eingefügt. Diese Templates werden dann in python referenziert und für alle Platzhalter Werte eingefügt. Die Verwendung von Templates trägt auch dazu bei, weniger Fehler zu verursachen.
+Links zu Lösungen auf den persönlichen Seiten.
+
+\section*{Aufgabe 3}
+Für diese Aufgabe verwenden wir die Lösung aus Aufgabe 1, entfernen jedoch die regex-Validierung, damit alle falschen Eingabewerte beim float-Typecast eine ValueError auslösen und wir $try-except$s zeigen können.\\
+Lösung:
+\begin{itemize}
+	\item 2 Templates wurden erstellt: Formular und Ergebnisseite.
+	\item Die Templates wurden mit Platzhaltern versehen: Ergebnisse, Fehlermeldung und CSS Klasse für den roten Rahmen.
+	\item Mako wurde in den python code integriert: Template-directory, module-directory und encoding gesetzt.
+	\item Wird die Seite das erste Mal geladen (Formulardaten leer), wird das Formular-Template verwendet, ohne Fehlermeldung und CSS Klasse geladen.
+	\item Ist eine Eingabe vorhanden, aber falsch, wird wiederum das Formular geladen, jedoch der rote Rahmen und eine Fehlermeldung eingefügt.
+	\item Ist die Eingabe in Ordnung, wird die Ergebnisseite geladen, und Werte für die Platzhalter übergeben.
+\end{itemize}
+
+
+
+\section*{Aufgabe 4}
+
+
+
+\end{document}
