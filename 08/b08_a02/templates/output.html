@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <title>Mako Test</title>
-<link rel="stylesheet" href="b08_a02.css">
+<%include file="css_include.html"/>
 </head>
 <body>
 <div class="${style}">
 ${teststring}
 </div>
+
+% for x in ('success', 'danger', 'default', 'primary'):
+    <br>
+    <br>
+    <button class="btn btn-${x}">${loop.index}</button>
+% endfor
+
+<h3>
+<%block name="sometext"/>
+</h3>
 </body>
 </html>
