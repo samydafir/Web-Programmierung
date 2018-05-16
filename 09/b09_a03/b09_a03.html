@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>b09_a03</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="b09_a03.css">
+
+    <script>
+    function submitCheck(event){
+        event.preventDefault();
+        var emailField = document.getElementById('email');
+        var form = document.getElementById('ticket-form');
+        if(emailField.value.includes('@')){
+            //form.action="test.cgi";
+            form.submit();
+        }else {
+            emailField.style.border="2px groove red";
+        }
+    }
+
+    </script>
+
+</head>
+
+<body>
+<h1>Ticket-Express</h1>
+<form id="ticket-form" method="post" action="">
+<div id="personal-info">
+    <div class="in-border">Adresse</div>
+        <div class="form-element">
+            <label for="name">Name:</label>
+            <input  id="name" type="text" size=30 placeholder="Max Mustermann" required>
+        </div>
+        <div class="form-element">
+            <label for="address">Lieferadresse:</address>
+            <textarea id="address" required></textarea>
+        </div>
+        <div class="form-element">
+            <label for="email">Email:</label>
+            <input id="email" type="email" size=30 placeholder="max@mustermann.com" required>
+        </div>
+        <div class="form-element">
+            <label for="comment">Bemerkung:</label>
+            <textarea id="comment" required></textarea>
+        </div>
+</div>
+
+<div id="ticket-info">
+    <div class="in-border">Ticket</div>
+    <div class="form-element">
+        <input type="radio" name="tickettype" value="standing"> Stehplatz
+    </div>
+    <div class="form-element">
+        <input type="radio" name="tickettype" value="seat"> Sitzplatz
+    </div>
+    <div class="form-element">
+        <input type="radio" name="tickettype" value="vip"> VIP
+    </div>
+    <div class="form-element">
+        <label for="adult">volljährig</label>
+        <input type="checkbox" id="adult" name="adult">
+    </div>
+    <div class="form-element">
+    <label for="category">Kategorie</label>
+        <select id="category">
+            <option value="vip">Ganz vorne</option>
+            <option value="cat1">Kategorie 1</option>
+            <option value="cat2">Kategorie 2</option>
+            <option value="cat3">Kategorie 3</option>
+        </select>
+    </div>
+</div>
+    <button onclick="submitCheck(event)">Kostenpflichtig bestellen</button>
+</form>
+
+
+</body>
+</html>

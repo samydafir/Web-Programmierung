@@ -1,0 +1,74 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{hyperref}
+\setlength{\parindent}{0em} 
+
+\title{Übungsblatt 09}
+\author{Thomas Samy Dafir}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+Alle Lösungen sind unter $buntmeise.cosy.sbg.ac.at$ verfügbar
+\section*{Aufgabe 1}
+
+\section*{Aufgabe 2}
+\subsection*{Lösung}
+Das Script wird einfach über ein script-Tag im HTML-head eingebunden\\
+Die reine JS Lösung verwendet das 'onclick' Attribut. Darin wird ein JS Befehl angegeben, der aufgerufen wird,
+wenn das Element (hier Button) angklickt wird.\\
+In unserem Fall wird eine Funktio angegeben, die das zu verbergende Element über 'getElementById' findet und dann dessen
+'display' Attribut auf 'none' setzt. Um das Element wieder einzublenden wird das 'display' Attribut auf 'block' zurückgesetzt.\\
+\\
+Die jQuery Lösung verwendet einen JQuery selector nach id um einen Event-Listener auf die Buttons zu setzen. Werden diese dann
+angeklickt, wird das zu verbergende Element wieder über die id selektiert und die jQuery Funktion 'hide' bzw. 'show' aufgerufen.
+Diese tun nichts anderes als die display Eigenschaft zu setzen.
+
+\subsection*{Lizenzen}
+jQuery unterliegt einer MIT Lizenz. Diese erlaubt unbeschränkte Benutzung, Veränderung und Verkauf. Die Lizenz muss jedoch in den Projekten immer angegeben werden. Außerdem gibt es Gewährleistung und es wird keine Haftung übernommen.\\
+\\
+\textbf{Bildlizenzen:}
+\begin{itemize}
+	\item Rights Managed: Gebühr pro Verwendung, abhängig vom Verwendungszweck
+	\item Royalty Free: Gebühr abhängig von der Größe, einmalig. Mehrfache Verwendung
+	\item Exclusive: Bild wird nur an einmal vergeben über eine gewisse Zeit / in einer gewissen geographischen Gegend.
+	\item Non-Exclusive: Rechte mehrfach vergeben/verkauft.
+	\item Creative Commons: 6 verschiedene Lizenzmodelle. Von: sämtliche Verwendung erlaubt (mit Angabe des Urhebers), bis: keine Veränderung, keine kommerzielle Verwendung.\\
+	Creative Commons basieren auf dem Prinzip, dass Fortschritt auf schon vorhandenem aufbaut.
+\end{itemize}
+Quelle: http://shutha.org/node/600
+
+\section*{Aufgabe 3}
+\subsection*{Lösung:}
+Es wurde ein einfaches Formular erstellt und mit CSS gestyled. Validierung des Email Feldes erfolgt mit pure Javascript.
+\begin{itemize}
+	\item Das Fformular verwendet Standard HTML Form Elemente, die teilweise in Block-Elemente verschachtelt wurden, um
+	den Aufbau an die angabe anzupassen und einen Zeilenumbruch zu erreichen.
+	\item Für sämtliche Bezeichnungen der wurden 'label' Tags verwendet. Diese enthalten ein 'for' Attribut, das angibt für
+	welches Element (id) das Label gedacht ist. Label stellt eindeutig eine Zugehörigkeit her. Außerdem wird ins Feld gesprungen, wenn auf das label geklickt wird.
+	\item ':focus' wurde verwendet, um das aktuell selektierte Eingabefeld zu formatieren (grüner Hintergrund).
+	\item Zur Validierung wurde das Absenden des Formulars zu einer JS Funktion umgeleitet. Der 'submit' Button erhält ein
+	'onclick' Event, das eine Funktion aufruft, die die Email-Eingabe validiert (auf @ prüft). dazu wird zuerst die 'default-action' (Formular absenden) verhindert (preventDefault), dann der Wert des Email Feldes abgefragt, dieser auf '@' geprüft und dann entweder das Formular abgesendet oder nicht. Kommt kein '@' vor, wird das Feld mit einem roten Rahmen umgeben.
+\end{itemize}
+
+\section*{Aufgabe 4}
+Lösung wurde mit jQuery erstellt, Layout mit CSS.
+\subsection*{Lösung}
+\begin{itemize}
+	\item Um Dropdown-Menüs aus- und einzublenden wurden die radio Buttons mot onclick events versehen. Beim Klick wird eine Funktion aufgerufen und die Ids des zu verbergenden und anzuzeigenden Elements übergeben. Diese werden dann mittels $style.display$ ein bzw. ausgeblendet.
+	\item Um Bilder zu wechseln, wurde ein 'change' eventListener auf 'select' gesetzt. Die aufgerufene Funktion liest den
+	selektierten Wert aus dem 'option' Tag und setzt mit jQuery das 'src' Attribut des 'img' Tags.
+	\item Um hier Injection zu verhindern werden die ausgelesenen 'option' Werte immer escaped.
+	\item Wechselt man das angezeigte Dropdown Menü, wird immer das zuletzt ausgewählte Item des einzublendenden Menüs ausgelesen und das passende Bild angezeigt.
+\end{itemize}
+
+\end{document}

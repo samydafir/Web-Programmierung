@@ -1,0 +1,36 @@
+html {
+    box-sizing:border-box !important;
+}
+
+body {
+    padding:10%;
+}
+
+input:focus {
+    background-color: LightGreen;
+}
+
+textarea:focus {
+    background-color: LightGreen;
+}
+
+h1 {
+    padding-bottom: 10px;
+}
+
+.in-border {
+    display:inline-block;
+    margin-top:-24px;
+    margin-left:10px;
+    background-color: #fff;
+}
+
+form {
+    width:50%;
+}
+
+#personal-info, #ticket-info {
+    border: 1px solid #000;
+    margin-bottom:20px;
+    padding:10px;
+}
