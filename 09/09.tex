@@ -71,4 +71,58 @@ Lösung wurde mit jQuery erstellt, Layout mit CSS.
 	\item Wechselt man das angezeigte Dropdown Menü, wird immer das zuletzt ausgewählte Item des einzublendenden Menüs ausgelesen und das passende Bild angezeigt.
 \end{itemize}
 
+\section*{Web Applikation Projekt}
+Es soll eine Quiz-Web-App mit folgenden Features zu erstellen:
+\begin{itemize}
+	\item Responsive Web App
+	\item Umsetzung mit HTML5, CSS, python, JS, jQuery.
+	\item Keine statischen Fragen. Fragen sollen per API von OpenTrivia bezogen werden.
+	\item Die App soll Optionen, die OpenTrivia erlaubt verwenden: Schwierigkeit, Thema.
+\end{itemize}
+Ablauf (User Sicht):
+\begin{enumerate}
+	\item User besucht die Seite.
+	\item Wählt Schwierigkeit, Thema, Anzahl an Fragen.
+	\item User beantwortet Fragen.
+	\item Nach dem ersten Einloggen einer Antwort hat der User nur mehr x Sekunden, um sich anders zu entscheiden.
+	\item Antwort wird gespeichert.
+	\item Am Ende erhält der User seine Ergebnisse.
+\end{enumerate}
+
+Ablauf (Programm Sicht):
+\begin{enumerate}
+	\item Start View wird an User gesendet.
+	\item Eingaben (Schwierigkeit, Thema) von User empfangen.
+	\item Anfrage an OpenTrivia. Fragen und Antworten serverseitig abspeichern.
+	\item Fragen und Antwortmöglichkeiten generieren und an User senden.
+	\item Antworten lokal (beim Benutzer) sammeln und abschließend an den Server senden.
+	\item Auswertung der Antworten.
+	\item Senden der Ergebnisse an den User (evtl. mit Lösungen).
+	\item Löschen der Session Daten.	
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
