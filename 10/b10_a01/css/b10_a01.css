@@ -1,0 +1,36 @@
+body {
+  padding: 5%;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 4ch 30ch 200px;
+  grid-gap: 10px;
+  margin: 10%;
+}
+
+.box {
+  border: 2px groove green;
+}
+
+.box1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+.box2 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}

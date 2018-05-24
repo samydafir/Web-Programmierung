@@ -1,0 +1,35 @@
+@media screen and (min-width:700px) {
+  nav {
+    position:absolute;
+    width:20%;
+    height:100%;
+    border:2px groove #000;
+  }
+
+  main {
+    position:absolute;
+    top:0;
+    left:20%;
+    height:100%;
+    width:80%;
+  }
+
+
+}
+
+@media print {
+  nav {
+    display:none;
+  }
+
+  main {
+    -webkit-print-color-adjust: exact;
+    width:100%;
+    padding:0;
+  }
+
+  .first, .second, .third {
+    background-color: #fff;
+  }
+
+}

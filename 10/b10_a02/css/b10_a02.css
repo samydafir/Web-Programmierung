@@ -1,0 +1,33 @@
+nav {
+  position:fixed;
+  background-color: #fff;
+  height: 60px;
+  width:100%;
+  padding:10px;
+  z-index:2;
+}
+
+main {
+  position:relative;
+  top: 60px;
+  border: 2px groove #000;
+  height: calc(100% - 60px);
+  width:100%;
+  padding:3%;
+  overflow-y: scroll;
+}
+
+.first {
+  background-color: green;
+  height:800px;
+}
+
+.second {
+  background-color: orange;
+  height:800px;
+}
+
+.third {
+  background-color: red;
+  height:800px;
+}
