@@ -1,0 +1,59 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{hyperref}
+\setlength{\parindent}{0em} 
+
+\title{Übungsblatt 10}
+\author{Thomas Samy Dafir}
+\date{}
+\hfuzz=10.0pt
+
+\begin{document}
+\maketitle
+
+Alle Lösungen sind unter $buntmeise.cosy.sbg.ac.at$ verfügbar.
+
+\section*{Aufgabe 1}
+Aufgabe 1 wurde mit einem rekursiven Algorithmus gelöst
+\textbf{Lösung}
+	\begin{itemize}
+		\item Mittels etree wird das .xml Dokument gelesen und eine Baumstruktur erstellt
+		\item Die Wurzel des Baums wird dann der rekursiven Funktion zugeführt
+		\item Die Funktion überprüft immer, ob ein key auf der aktuellen Ebene öfter vorkommt. Ist das der Fall
+		wird die aktuelle ebene in ein Array verpackt. Ansonsten jede Element einzeln in die Map eingefügt.
+		\item Die Funktion iteriert über alle Kindknoten und ruft für diese wiederum sich selbst auf.
+		\item Falls ein Knoten noch mehr als 0 Kindknoten enthält, also kein Blatt ist, wird immer wieder
+		die Funktion für jeden Kindknoten aufgerufen.
+		\item Ist ein Blatt erreicht, wird ein (key: value)-Eintrag in einee Map erstellt und diese zurückgegeben.
+		\item Das wird bis zur Wurzel fortgeführt.
+		\item Auf jeder Ebene wird entschieden, ob Werte direkt als Resultat in eine Map eingefügt werden, oder, weil
+		Dulikate existieren vorher in einem Array zusammengefasst werden. 
+	\end{itemize}
+
+\section*{Aufgabe 2}
+Die Lösunf wurde mittels $flask_restful$ erstellt.
+\textbf{Lösung}
+\begin{itemize}
+	\item Es wurden 2 Klassen erstellt: C\_to\_F, F\_to\_C.
+	\item Diese Klassen definieren jeweils eine $get$ Funtion.
+	\item Mit $flask_restful$ werden 2 Routen definiert: ctof und ftoc. Diese Werte
+	werden an jeweils eine Klasse gebunden.
+	\item Die $get$ Funktionen rufen jeweils eine Funktion auf, die entweder Celsius in Fahrenheit umrechnet oder umgekehrt und das Ergebnis als $json$ formattiert zurück
+	gibt.
+	\item Wird jetzt ein $get$ Request an /ctof/<Wert> gesendet, wird die get Funktion der gebundenen Klasse aufgerufen und der Wert als Argument übergeben. Diese führt dann die erforderlichen Berechnungen durch.
+	\item Zugriff über WSGI: Dazu wird ein .wsgi File erstellt, das auf das auszuführende Python Modul verweist. Zusätzlich wird ein neuer Virtual Host in apache erstellt, der wiederum auf das Verzeichnis verweist, in dem die .wsgi Datei liegt. Dazu wird mod\_wsgi verwendet. 
+	Zusätzlich muss apache noch angewiesen werden, auf einen Port zu lauschen (hier 8080). Das wird in $ports.conf$ eingetragen.
+	
+\end{itemize}
+
+
+
+
+
+\end{document}
