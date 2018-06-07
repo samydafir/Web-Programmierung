@@ -7,24 +7,39 @@ tree = ET.parse("simple.xml")
 root = tree.getroot()
 dict = {}
 
+def duplicate_keys(node):
+    keys = set()
+    for child in node:
+        if child.tag in keys:
+            return True;
+        else:
+            keys.add(child.tag)
+    return False
 
 def xml_to_dict(node):
 
+    dup = duplicate_keys(node)
+
+    temp = {}
     if len(node) > 0:
-        temp = {}
         temp_array = []
         for child in node:
-            temp_array.append(xml_to_dict(child))
-        temp[node.tag] = temp_array
+            if dup:
+                temp_array.append({child.tag: xml_to_dict(child)})
+            else:
+                temp[child.tag] = xml_to_dict(child)
+
+        if dup:
+            temp[node.tag] = temp_array
+
     else:
-        temp = {}
         temp[node.tag] = node.text
 
     return temp
 
 
 
-dict = {root.tag: xml_to_dict(root)}
-print json.dumps(dict, indent=4, sort_keys=True)
+dict = xml_to_dict(root)
+print json.dumps(dict, indent=2, sort_keys=False)
 with open("data_file.json", "w") as write_file:
-    json.dump(dict, write_file, indent=4, sort_keys=True)
+    json.dump(dict, write_file, indent=2, sort_keys=False)
