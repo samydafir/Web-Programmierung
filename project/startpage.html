@@ -12,15 +12,55 @@
 
   <body>
 
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand logo" href="startpage.html">QuizzIT</a>
+      <div class="navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="login.html">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+        </li>
+      </ul>
+    </div>
+    </nav>
+
+
     <header>
-      Welcome to
+      Welcome to QuizzIT
     </header>
 
     <main>
       <form method="post" action="">
         <label for="topic">Topic</label>
         <select id="topic" class="form-control">
-          <option>xxxx</option>
+          <option disabled selected>Please Select</option>
+          <option value="any">Any Category</option>
+    			<option value="9">General Knowledge</option>
+          <option value="10">Entertainment: Books</option>
+          <option value="11">Entertainment: Film</option>
+          <option value="12">Entertainment: Music</option>
+          <option value="13">Entertainment: Musicals &amp; Theatres</option>
+          <option value="14">Entertainment: Television</option>
+          <option value="15">Entertainment: Video Games</option>
+          <option value="16">Entertainment: Board Games</option>
+          <option value="17">Science &amp; Nature</option>
+          <option value="18">Science: Computers</option>
+          <option value="19">Science: Mathematics</option>
+          <option value="20">Mythology</option>
+          <option value="21">Sports</option>
+          <option value="22">Geography</option>
+          <option value="23">History</option>
+          <option value="24">Politics</option>
+          <option value="25">Art</option>
+          <option value="26">Celebrities</option>
+          <option value="27">Animals</option>
+          <option value="28">Vehicles</option>
+          <option value="29">Entertainment: Comics</option>
+          <option value="30">Science: Gadgets</option>
+          <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+          <option value="32">Entertainment: Cartoon &amp; Animations</option>
         </select>
 
         <label for="diff">Diffuculty</label>
@@ -39,7 +79,7 @@
         <label for="tf">True / False</label>
         <br>
         <label for="numofquestions">Numer of questions</label>
-        <input type="number" id="numofquestions" class="form-control">
+        <input type="number" id="numofquestions" class="form-control" min=1 max=25>
         <br>
         <input type="submit" class="btn btn-primary">
       </form>

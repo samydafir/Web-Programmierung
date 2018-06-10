@@ -3,6 +3,7 @@
 * CSS Document
 * contains default styles
 */
+
 body {
     font-family: 'Saira', sans-serif;
 }
@@ -11,12 +12,8 @@ main {
   width: 100%;
 }
 
-header {
-  position: relative;
-  font-size: 1.5em;
-  border-bottom: 1px solid green;
-  width:100%;
-  margin-bottom: 1em;
+.logo {
+  font-size: 2em
 }
 
 .centered {
@@ -33,7 +30,10 @@ header {
 
 .answer {
   display: block;
+  white-space: normal;
+  word-wrap: break-word;
   font-size: 1.3em;
   width: 98%;
   margin: 1%;
+  margin-bottom: 0.5em;
 }

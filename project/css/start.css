@@ -12,8 +12,18 @@ header {
 
 }
 
+nav {
+  display: inline-block;
+  height: 50px;
+}
+
 main {
   margin: 2%;
+}
+
+header {
+  top: 50px;
+  font-size: 3em;
 }
 
 select {

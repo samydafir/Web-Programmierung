@@ -5,35 +5,45 @@
     <link href="https://fonts.googleapis.com/css?family=Saira" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/setup.js"></script>
   </head>
 
   <body>
-
-    <header>
-      header
-    </header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand logo" href="startpage.html">QuizzIT</a>
+      <div class="navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="login.html">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+        </li>
+      </ul>
+    </div>
+    </nav>
 
     <main>
       <div class="question centered">
-        {{ question }}
+        ExampleQuestion
       </div>
 
       <button id="answer1" class="btn answer centered">
-        {{ answer1 }}
+        Example answer 1 short but not that short
       </button>
       <button id="answer2" class="btn answer centered">
-        {{ answer2 }}
+        Example answer 2
       </button>
       <button id="answer3" class="btn answer centered">
-        {{ answer3 }}
+        Example anser 3 which i a really long answer with a lot of
+        text. Oh it even includes a second sentence
       </button>
       <button id="answer4" class=" btn answer centered">
-        {{ answer4 }}
+        Medium length answer with some words
       </button>
-
 
     </main>
 
