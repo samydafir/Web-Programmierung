@@ -51,4 +51,4 @@ api.add_resource(F_to_C, '/ftoc/<fahrenheit>')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

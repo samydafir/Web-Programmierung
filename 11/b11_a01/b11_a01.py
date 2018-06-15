@@ -3,10 +3,6 @@
 import xml.etree.ElementTree as ET
 import json
 
-tree = ET.parse("simple.xml")
-root = tree.getroot()
-dict = {}
-
 def duplicate_keys(node):
     keys = set()
     for child in node:
@@ -15,6 +11,7 @@ def duplicate_keys(node):
         else:
             keys.add(child.tag)
     return False
+
 
 def xml_to_dict(node):
 
@@ -37,7 +34,8 @@ def xml_to_dict(node):
 
     return temp
 
-
+tree = ET.parse("simple.xml")
+root = tree.getroot()
 
 dict = xml_to_dict(root)
 print json.dumps(dict, indent=2, sort_keys=False)
