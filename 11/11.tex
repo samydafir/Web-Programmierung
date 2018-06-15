@@ -37,7 +37,7 @@ Aufgabe 1 wurde mit einem rekursiven Algorithmus gelöst
 	\end{itemize}
 
 \section*{Aufgabe 2}
-Die Lösunf wurde mittels $flask_restful$ erstellt.
+Die Lösunf wurde mittels $flask\_restful$ erstellt.
 \textbf{Lösung}
 \begin{itemize}
 	\item Es wurden 2 Klassen erstellt: C\_to\_F, F\_to\_C.
@@ -49,8 +49,11 @@ Die Lösunf wurde mittels $flask_restful$ erstellt.
 	\item Wird jetzt ein $get$ Request an /ctof/wert gesendet, wird die get Funktion der gebundenen Klasse aufgerufen und der Wert als Argument übergeben. Diese führt dann die erforderlichen Berechnungen durch.
 	\item Zugriff über WSGI: Dazu wird ein .wsgi File erstellt, das auf das auszuführende Python Modul verweist. Zusätzlich wird ein neuer Virtual Host in apache erstellt, der wiederum auf das Verzeichnis verweist, in dem die .wsgi Datei liegt. Dazu wird mod\_wsgi verwendet. 
 	Zusätzlich muss apache noch angewiesen werden, auf einen Port zu lauschen (hier 8080). Das wird in $ports.conf$ eingetragen.
-	
 \end{itemize}
+
+URLs:\\
+$http://buntmeise.cosy.sbg.ac.at:8080/ctof/value$ \\
+$http://buntmeise.cosy.sbg.ac.at:8080/ftoc/value$
 
 
 
