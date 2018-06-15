@@ -21,9 +21,10 @@ main {
 }
 
 .question {
-  font-size: 3em;
+  font-size: 2.5em;
   margin: 1%;
   margin-bottom: 5%;
+  margin-top: 5%;
   border: 2px groove green;
   border-radius: 3px;
 }
@@ -36,4 +37,29 @@ main {
   width: 98%;
   margin: 1%;
   margin-bottom: 0.5em;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  -moz-transition: 1s;
+}
+
+#result-overlay {
+  display: none;
+  position: absolute;
+  padding: 5%;
+  border: 2px groove #000;
+  border-radius: 3px;
+  top: 45%;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

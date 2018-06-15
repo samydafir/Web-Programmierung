@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Welcome to QuizzIT</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/start.css">
@@ -32,11 +32,10 @@
     </header>
 
     <main>
-      <form method="post" action="">
+      <form method="get" action="start.cgi">
         <label for="topic">Topic</label>
-        <select id="topic" class="form-control">
-          <option disabled selected>Please Select</option>
-          <option value="any">Any Category</option>
+        <select name="topic" class="form-control">
+          <option value="any" selected>Any Category</option>
     			<option value="9">General Knowledge</option>
           <option value="10">Entertainment: Books</option>
           <option value="11">Entertainment: Film</option>
@@ -64,27 +63,26 @@
         </select>
 
         <label for="diff">Diffuculty</label>
-        <select id="diff" class="form-control">
-          <option>Easy</option>
-          <option>Medium</option>
-          <option>Hard</option>
+        <select name="diff" class="form-control">
+          <option value="easy">easy</option>
+          <option value="medium">medium</option>
+          <option value="hard">hard</option>
         </select>
 
         <label>Type</label>
         <br>
-        <input type="radio" name="type" id="mc">
+        <input type="radio" name="type" value="multiple">
         <label for="type">Multiple Choice</label>
         <br>
-        <input type="radio" name="type" id="tf">
+        <input type="radio" name="type" value="boolean">
         <label for="tf">True / False</label>
         <br>
-        <label for="numofquestions">Numer of questions</label>
-        <input type="number" id="numofquestions" class="form-control" min=1 max=25>
+        <label for="amount">Numer of questions</label>
+        <input type="number" name="amount" class="form-control" min=1 max=25>
         <br>
         <input type="submit" class="btn btn-primary">
       </form>
     </main>
-
 
   </body>
 </html>

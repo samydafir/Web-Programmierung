@@ -12,7 +12,15 @@
 @media screen and (min-width: 800px) {
   .answer {
       display: inline-block;
-      width: 47%;
+      width: 47.5%;
+  }
+
+  .question {
+    font-size: 3em;
+  }
+
+  #result-overlay {
+    width: 80%;
   }
 }
 
@@ -24,5 +32,9 @@
   main {
     width: 1100px;
     margin: auto;
+  }
+
+  #result-overlay {
+    width: 50%;
   }
 }
