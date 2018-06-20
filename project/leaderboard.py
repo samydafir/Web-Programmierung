@@ -15,13 +15,26 @@ print"""<html><head>
         <style>
         body {
             font-family: 'Saira', sans-serif;
+        }
+
+        main {
             margin: 2%;
         }
         </style>
         <body>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand logo" href="index.html">QuizzIT</a>
+        <div class="navbar-collapse">
+        <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Back</a>
+        </li>
+        </ul>
+        </div>
+        </nav>
         """
 
-print"<h1>Leaderboard</h1>"
+print"<main><h1>Leaderboard</h1><br>"
 
 db = sqlite3.connect("quizzit.db", isolation_level=None)
 cursor = db.cursor()
@@ -41,6 +54,7 @@ while row is not None:
     row = cursor.fetchone()
 
 print"""</table>
+        </main>
         </body>
         </html>"""
 cursor.close()
