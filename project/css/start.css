@@ -29,3 +29,29 @@ header {
 select {
   margin-bottom: 2%;
 }
+
+.overlay {
+  position: absolute;
+  padding: 2%;
+  border: 2px groove #343a40;
+  border-radius: 3px;
+  top: 30%;
+  width: 98%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+#register {
+  display: none;
+}
+
+#login {
+  display: none;
+}
+
+#login-message, #reg-message {
+  color: orange;
+}

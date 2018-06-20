@@ -5,7 +5,9 @@ var answers = [];
 function random_colors(){
   var colors = ['danger', 'success', 'dark', 'warning'];
   $('.answer').each(function(){
-    $(this).addClass("btn-" + colors[Math.floor(Math.random() * colors.length)]);
+    $(this).removeClass();
+    $(this).addClass("btn answer centered");
+    $(this).addClass("btn-" + colors[Math .floor(Math.random() * colors.length)]);
   });
 }
 

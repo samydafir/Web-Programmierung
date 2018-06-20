@@ -3,6 +3,9 @@
 import cgi, cgitb
 cgitb.enable()
 import requests, json
+import sqlite3, re, os, Cookie
+from random import shuffle
+
 from mako.template import Template
 from mako.lookup import TemplateLookup
 
@@ -59,9 +62,18 @@ def validate_amount(amount):
     except ValueError:
         return 1
 
+def validate_user_session(username):
+    pattern = "^[0-9a-zA-Z#!-]+$"
+    matches = re.match(pattern, username)
+    if matches:
+        return username.strip()
+    else:
+        return False
+
 
 templates = TemplateLookup(directories=['templates/'], module_directory='modules/',
   output_encoding='utf-8', encoding_errors='replace')
+
 
 form = cgi.FieldStorage()
 
@@ -80,17 +92,53 @@ else:
 response = requests.get("https://opentdb.com/api.php", params=parameters)
 
 result = []
+correct = []
 data = json.loads(response.content)
 for question in data["results"]:
-    result.append([question["question"], question["correct_answer"], question["incorrect_answers"]])
+    all_answers = question["incorrect_answers"]
+    all_answers.append(question["correct_answer"])
+    shuffle(all_answers)
+    result.append([question["question"], all_answers])
+    correct.append(question["correct_answer"])
 
+db = sqlite3.connect("quizzit.db", isolation_level=None)
+cursor = db.cursor()
+logged_in = False
 
-if len(result[0][2]) == 1:
+if "HTTP_COOKIE" in os.environ:
+    cookies = os.environ["HTTP_COOKIE"]
+    c = Cookie.SimpleCookie()
+    c.load(cookies)
+
+    try:
+        username = validate_user_session(c["username"].value)
+        session_id_received = validate_user_session(c["session_id"].value)
+
+        delete_prev = """DELETE FROM answers
+                         WHERE sessionid=?"""
+        cursor.execute(delete_prev, [session_id_received])
+
+        insert_answer = """INSERT INTO answers
+                           VALUES (?, ?)"""
+
+        cursor.execute(insert_answer, [session_id_received, str(correct).strip("[]")])
+        logged_in = True
+    except KeyError:
+        logged_in = False
+
+if logged_in:
+    correct_answers = '\"\"'
+else:
+    correct_answers = json.dumps(correct)
+
+if len(result[0][1]) == 2:
     curr_template = templates.get_template("questions_boolean.html")
-    print(curr_template.render(question=result[0][0], answer1=result[0][1],
-        answer2=result[0][2][0], questions=json.dumps(data["results"])))
+    print(curr_template.render(question=result[0][0], answer1=result[0][1][0],
+        answer2=result[0][1][1], questions=json.dumps(result),
+        correct=correct_answers))
 else:
     curr_template = templates.get_template("questions_multiple.html")
-    print(curr_template.render(question=result[0][0], answer1=result[0][1],
-        answer2=result[0][2][0], answer3=result[0][2][1],
-        answer4=result[0][2][2], questions=json.dumps(data["results"])))
+    print(curr_template.render(question=result[0][0], answer1=result[0][1][0],
+    answer2=result[0][1][1], answer3=result[0][1][2],
+    answer4=result[0][1][3], questions=json.dumps(result),
+    correct=correct_answers))

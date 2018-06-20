@@ -3,6 +3,7 @@ ids = ["answer1", "answer2", "answer3", "answer4"];
 $("#answer1, #answer2, #answer3, #answer4").click(function( event ){
   var answer = $(this);
   answers.push(($(answer).text().trim()));
+
   /*enlarge selected answer*/
   $(answer).css("width", "98%");
   $(answer).css("height", "100px");
@@ -25,20 +26,19 @@ $("#answer1, #answer2, #answer3, #answer4").click(function( event ){
   }, 2000);
 });
 
-
+/**
+ * Loads next question from the questions-array using the
+ * incremented question-counter
+ */
 function nextQuestion(answer){
   /*Load new question*/
-  var next = questions[questionNumber]["incorrect_answers"];
-  next.push(questions[questionNumber]["correct_answer"])
-  next.sort(function() {
-      return 0.5 - Math.random();
-  });
+  var next = questions[questionNumber][1];
 
   $(".answer").each(function(){
       $(this).html(next.pop());
   });
 
-  $(".question").html(questions[questionNumber]["question"]);
+  $(".question").html(questions[questionNumber][0]);
 
   formatNext(answer);
 }
@@ -65,17 +65,36 @@ function progress() {
   $(".progress-bar").first().css("width", progress + "%");
 }
 
+
 function results(){
   var i;
   var points = 0;
+  var cookie = document.cookie
 
   progress();
-  for(i = 0; i < answers.length; i++) {
-    if(answers[i] === questions[i]["correct_answer"])
-      points += 1;
+
+  if (cookie.indexOf("session_id") != -1  && cookie.indexOf("username") != -1) {
+    $.ajax({
+      url: "post_results.cgi",
+      type: "POST",
+      data: {answers: answers},
+      success: function(response){
+        console.log(response);
+        var result = response.split(",");
+        $("#score").html(result[1]);
+        $("#max-points").html(result[0]);
+      }
+    });
+
+  } else {
+    for(i = 0; i < answers.length; i++) {
+      if(answers[i] === correct[i])
+        points += 1;
+    }
+    $("#score").html(points);
+    $("#max-points").html(questions.length);
   }
-  $("#score").html(points);
-  $("#max-points").html(questions.length);
+
   $("#result-overlay").show();
   $("main").css("filter", "blur(11px)");
 }
