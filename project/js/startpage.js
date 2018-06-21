@@ -67,5 +67,15 @@ function register (event) {
 }
 
 function logout(event) {
+  $.ajax({
+    url: "logout.cgi",
+    type: "POST",
+    success: function(response){
+      $("#login-button").text("Login");
+      $("#login-button").attr("onclick", "show_dialog(event, 'login')");
+    },
+    error: function(response){
 
+    }
+  });
 }

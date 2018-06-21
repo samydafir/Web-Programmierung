@@ -51,9 +51,9 @@ if username != False and password != False:
 
     if result != None and result[1] == password:
         set_login = """UPDATE users
-                     SET sessionid=?, loggedin=?
+                     SET sessionid=?
                      WHERE username=?"""
-        cursor.execute(set_login, [session_id, 1, username])
+        cursor.execute(set_login, [session_id, username])
 
         print 'Set-Cookie: session_id=' + str(session_id) + "; Max-Age=86400";
         print 'Set-Cookie: username=' + str(username) + "; Max-Age=86400";

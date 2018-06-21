@@ -39,19 +39,22 @@ print"<main><h1>Leaderboard</h1><br>"
 db = sqlite3.connect("quizzit.db", isolation_level=None)
 cursor = db.cursor()
 
-query = """SELECT username, SUM(questions), SUM(result)
-           FROM results"""
+query = """SELECT username, SUM(questions) as q, SUM(result) as r, (100 * SUM(result)/SUM(questions)) as percent
+           FROM results
+           GROUP BY username
+           ORDER BY percent DESC, q DESC"""
 
 cursor.execute(query)
 
 print"<table class='table table-striped'>"
-print"<tr><th>user</th><th>answered questions</th><td>correct answers</td><td>correct answers (%)</td></tr>"
+print"<tr><th>rank</th><th>user</th><th>answered questions</th><td>correct answers</td><td>correct answers (%)</td></tr>"
 row = cursor.fetchone()
-
+rank = 1
 while row is not None:
     percent = float(row[2])/float(row[1]) * 100
-    print"<tr><td>"+str(row[0])+"</td><td>"+str(row[1])+"</td><td>"+str(row[2])+"</td><td>"+str(percent)+"</td></tr>"
+    print"<tr><td>"+str(rank)+"</td><td>"+str(row[0])+"</td><td>"+str(row[1])+"</td><td>"+str(row[2])+"</td><td>"+str(percent)+"</td></tr>"
     row = cursor.fetchone()
+    rank += 1
 
 print"""</table>
         </main>
