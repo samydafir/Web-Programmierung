@@ -46,7 +46,7 @@ query = """SELECT username, SUM(questions) as q, SUM(result) as r, (100 * SUM(re
 
 cursor.execute(query)
 
-print"<table class='table table-striped'>"
+print"<table class='table table-striped table-bordered'>"
 print"<tr><th>rank</th><th>user</th><th>answered questions</th><td>correct answers</td><td>correct answers (%)</td></tr>"
 row = cursor.fetchone()
 rank = 1
